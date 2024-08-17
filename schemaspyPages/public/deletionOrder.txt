@@ -1,0 +1,7 @@
+users
+physicians
+people
+patients
+databasechangeloglock
+databasechangelog
+appointments
