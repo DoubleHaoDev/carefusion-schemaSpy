@@ -1,7 +1,9 @@
+organizations
+users
+physicians
+organization_physician_memberships
 appointments
 databasechangelog
 databasechangeloglock
 patients
 people
-physicians
-users
