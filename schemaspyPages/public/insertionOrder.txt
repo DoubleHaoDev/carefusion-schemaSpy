@@ -1,6 +1,7 @@
-organizations
 users
+organizations
 physicians
+tokens
 organization_physician_memberships
 appointments
 databasechangelog

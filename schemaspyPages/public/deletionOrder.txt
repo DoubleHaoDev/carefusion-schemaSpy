@@ -4,6 +4,7 @@ databasechangeloglock
 databasechangelog
 appointments
 organization_physician_memberships
+tokens
 physicians
-users
 organizations
+users
