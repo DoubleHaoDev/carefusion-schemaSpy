@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?><database name="carefusion_development" schema="public" type="PostgreSQL - 13.16 (Debian 13.16-1.pgdg120+1)">
    <tables>
+      <table name="allergies" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="int4" typeCode="4">
+            <child column="allergy_id" foreignKey="patient_allergies_allergy_id_fk" implied="false" onDeleteCascade="false" schema="public" table="patient_allergies"/>
+         </column>
+         <column autoUpdated="false" defaultValue="gen_random_uuid()" digits="0" id="1" name="uuid" nullable="false" remarks="" size="2147483647" type="uuid" typeCode="1111"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="name" nullable="false" remarks="" size="100" type="varchar" typeCode="12"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="allergies_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="allergies_uuid_key" unique="true">
+            <column ascending="true" name="uuid"/>
+         </index>
+      </table>
       <table name="appointments" numRows="0" remarks="" schema="public" type="TABLE">
          <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="int4" typeCode="4"/>
          <column autoUpdated="false" defaultValue="gen_random_uuid()" digits="0" id="1" name="uuid" nullable="false" remarks="" size="2147483647" type="uuid" typeCode="1111"/>
@@ -47,6 +61,35 @@
             <column ascending="true" name="id"/>
          </index>
       </table>
+      <table name="identification_documents" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="id" foreignKey="identification_documents_id_fk" implied="false" onDeleteCascade="false" schema="public" table="patients"/>
+         </column>
+         <column autoUpdated="false" defaultValue="gen_random_uuid()" digits="0" id="1" name="uuid" nullable="false" remarks="" size="2147483647" type="uuid" typeCode="1111"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="extension" nullable="false" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="file" nullable="false" remarks="" size="10" type="oid" typeCode="-5"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="identification_documents_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="identification_documents_uuid_key" unique="true">
+            <column ascending="true" name="uuid"/>
+         </index>
+      </table>
+      <table name="medications" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="int4" typeCode="4">
+            <child column="medication_id" foreignKey="patient_medications_medication_id_fk" implied="false" onDeleteCascade="false" schema="public" table="patient_medications"/>
+         </column>
+         <column autoUpdated="false" defaultValue="gen_random_uuid()" digits="0" id="1" name="uuid" nullable="false" remarks="" size="2147483647" type="uuid" typeCode="1111"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="name" nullable="false" remarks="" size="100" type="varchar" typeCode="12"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="medications_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="medications_uuid_key" unique="true">
+            <column ascending="true" name="uuid"/>
+         </index>
+      </table>
       <table name="organization_physician_memberships" numRows="0" remarks="" schema="public" type="TABLE">
          <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="int4" typeCode="4"/>
          <column autoUpdated="false" defaultValue="gen_random_uuid()" digits="0" id="1" name="uuid" nullable="false" remarks="" size="2147483647" type="uuid" typeCode="1111"/>
@@ -88,13 +131,54 @@
             <column ascending="true" name="uuid"/>
          </index>
       </table>
-      <table name="patients" numRows="0" remarks="" schema="public" type="TABLE">
+      <table name="patient_allergies" numRows="0" remarks="" schema="public" type="TABLE">
          <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="patient_id" nullable="false" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="id" foreignKey="patient_allergies_patient_id_fk" implied="false" onDeleteCascade="false" schema="public" table="patients"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="allergy_id" nullable="false" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="id" foreignKey="patient_allergies_allergy_id_fk" implied="false" onDeleteCascade="false" schema="public" table="allergies"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="patient_allergies_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="patient_medications" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="patient_id" nullable="false" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="id" foreignKey="patient_medications_patient_id_fk" implied="false" onDeleteCascade="false" schema="public" table="patients"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="medication_id" nullable="false" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="id" foreignKey="patient_medications_medication_id_fk" implied="false" onDeleteCascade="false" schema="public" table="medications"/>
+         </column>
+      </table>
+      <table name="patients" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="int4" typeCode="4">
+            <child column="id" foreignKey="identification_documents_id_fk" implied="false" onDeleteCascade="false" schema="public" table="identification_documents"/>
+            <child column="patient_id" foreignKey="patient_allergies_patient_id_fk" implied="false" onDeleteCascade="false" schema="public" table="patient_allergies"/>
+            <child column="patient_id" foreignKey="patient_medications_patient_id_fk" implied="false" onDeleteCascade="false" schema="public" table="patient_medications"/>
+         </column>
          <column autoUpdated="false" defaultValue="gen_random_uuid()" digits="0" id="1" name="uuid" nullable="false" remarks="" size="2147483647" type="uuid" typeCode="1111"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="person_id" nullable="false" remarks="" size="10" type="int4" typeCode="4"/>
          <column autoUpdated="false" defaultValue="now()" digits="6" id="3" name="created_at" nullable="false" remarks="" size="35" type="timestamptz" typeCode="93"/>
          <column autoUpdated="false" defaultValue="now()" digits="6" id="4" name="updated_at" nullable="false" remarks="" size="35" type="timestamptz" typeCode="93"/>
          <column autoUpdated="false" defaultValue="null" digits="6" id="5" name="deleted_at" nullable="true" remarks="" size="35" type="timestamptz" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="primary_phone" nullable="false" remarks="" size="150" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="7" name="birthdate" nullable="false" remarks="" size="35" type="timestamptz" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="gender" nullable="false" remarks="" size="10" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="address" nullable="false" remarks="" size="150" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="occupation" nullable="true" remarks="" size="150" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="emergency_contact_name" nullable="false" remarks="" size="150" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="12" name="family_medical_history" nullable="false" remarks="" size="150" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="13" name="past_medical_history" nullable="false" remarks="" size="150" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="14" name="identification_type" nullable="false" remarks="" size="150" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="false" digits="0" id="15" name="treatment_concent" nullable="false" remarks="" size="1" type="bool" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="false" digits="0" id="16" name="disclosure_concent" nullable="false" remarks="" size="1" type="bool" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="false" digits="0" id="17" name="privacy_concent" nullable="false" remarks="" size="1" type="bool" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="18" name="user_id" nullable="false" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="id" foreignKey="tokens_user_id_fk" implied="false" onDeleteCascade="false" schema="public" table="users"/>
+         </column>
          <primaryKey column="id" sequenceNumberInPK="1"/>
          <index name="patients_pkey" unique="true">
             <column ascending="true" name="id"/>
@@ -170,6 +254,7 @@
       </table>
       <table name="users" numRows="0" remarks="" schema="public" type="TABLE">
          <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="int4" typeCode="4">
+            <child column="user_id" foreignKey="tokens_user_id_fk" implied="false" onDeleteCascade="false" schema="public" table="patients"/>
             <child column="user_id" foreignKey="physicians_user_id_fk" implied="false" onDeleteCascade="false" schema="public" table="physicians"/>
             <child column="user_id" foreignKey="tokens_user_id_fk" implied="false" onDeleteCascade="false" schema="public" table="tokens"/>
          </column>

@@ -1,10 +1,15 @@
 people
-patients
 databasechangeloglock
 databasechangelog
 appointments
+patient_medications
+patient_allergies
 organization_physician_memberships
 tokens
+identification_documents
 physicians
+patients
 organizations
+medications
+allergies
 users

@@ -118,6 +118,10 @@
                                     <td>
                                         <table border='0' cellspacing='0' cellpadding='0'>
                                             <tr>
+                                                <td title="patients.user_id references users.id via tokens_user_id_fk"><a href='patients.html'>patients</a><span class='relatedKey'>.user_id</span></td>
+                                                <td class="constraint detail">tokens_user_id_fk<span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
+                                            </tr>
+                                            <tr>
                                                 <td title="physicians.user_id references users.id via physicians_user_id_fk"><a href='physicians.html'>physicians</a><span class='relatedKey'>.user_id</span></td>
                                                 <td class="constraint detail">physicians_user_id_fk<span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
                                             </tr>
@@ -357,18 +361,23 @@
                                 <div class="tab-content no-padding">
                                     <div class="chart tab-pane active" id="oneDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="oneDegreeRelationshipsDiagram" name="oneDegreeRelationshipsDiagram">
-<area shape="rect" id="node1" href="physicians.html" target="_top" title="physicians" alt="" coords="371,5,540,181">
-<area shape="rect" id="node2" href="users.html" target="_top" title="users" alt="" coords="5,172,327,535">
-<area shape="rect" id="node3" href="tokens.html" target="_top" title="tokens" alt="" coords="387,199,524,404">
+<area shape="rect" id="node1" href="patients.html" target="_top" title="patients" alt="" coords="371,5,627,181">
+<area shape="rect" id="node2" href="users.html" target="_top" title="users" alt="" coords="5,255,327,617">
+<area shape="rect" id="node3" href="physicians.html" target="_top" title="physicians" alt="" coords="414,199,583,375">
+<area shape="rect" id="node4" href="tokens.html" target="_top" title="tokens" alt="" coords="430,392,567,597">
 </map>
                                         <a name='diagram'><img id="oneDegreeImg" src="../diagrams/tables/users.1degree.png" usemap="#oneDegreeRelationshipsDiagram" class="diagram" border="0" align="left"></a>
                                     </div>
                                     <div class="chart tab-pane " id="twodegreesDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="twoDegreesRelationshipsDiagram" name="twoDegreesRelationshipsDiagram">
-<area shape="rect" id="node1" href="organization_physician_memberships.html" target="_top" title="organization_physician_memberships" alt="" coords="584,8,963,96">
-<area shape="rect" id="node2" href="physicians.html" target="_top" title="physicians" alt="" coords="371,5,540,181">
-<area shape="rect" id="node3" href="users.html" target="_top" title="users" alt="" coords="5,172,327,535">
-<area shape="rect" id="node4" href="tokens.html" target="_top" title="tokens" alt="" coords="387,199,524,404">
+<area shape="rect" id="node1" href="identification_documents.html" target="_top" title="identification_documents" alt="" coords="719,5,1001,93">
+<area shape="rect" id="node2" href="patients.html" target="_top" title="patients" alt="" coords="371,116,627,292">
+<area shape="rect" id="node7" href="users.html" target="_top" title="users" alt="" coords="5,369,327,732">
+<area shape="rect" id="node3" href="organization_physician_memberships.html" target="_top" title="organization_physician_memberships" alt="" coords="671,321,1049,409">
+<area shape="rect" id="node4" href="physicians.html" target="_top" title="physicians" alt="" coords="414,313,583,489">
+<area shape="rect" id="node5" href="patient_allergies.html" target="_top" title="patient_allergies" alt="" coords="754,111,966,199">
+<area shape="rect" id="node6" href="patient_medications.html" target="_top" title="patient_medications" alt="" coords="739,216,981,304">
+<area shape="rect" id="node8" href="tokens.html" target="_top" title="tokens" alt="" coords="430,507,567,712">
 </map>
                                         <a name='diagram'><img id="twodegreesDegreeImg" src="../diagrams/tables/users.2degrees.png" usemap="#twoDegreesRelationshipsDiagram" class="diagram" border="0" align="left"></a>
                                     </div>
